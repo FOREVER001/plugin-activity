@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Plugin">
-
-        <activity android:name=".PluginHomeActivity" >
+<!--        在插件中不需要配置Activity，因为插件没有安装-->
+<!--        <activity android:name=".SecondActivity"></activity>-->
+        <activity android:name=".PluginHomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
-                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
