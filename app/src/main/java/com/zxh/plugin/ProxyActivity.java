@@ -1,8 +1,10 @@
 package com.zxh.plugin;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Resources;
 import android.os.Bundle;
 
@@ -65,5 +67,19 @@ public class ProxyActivity extends Activity {
         Intent proxyIntent=new Intent(this,ProxyService.class);
         proxyIntent.putExtra("className",className);
         return super.startService(proxyIntent);
+    }
+
+    @Override
+    public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        //获取插件中广播接受者的全类么
+        String mPluginReceiverName = receiver.getClass().getName();
+        //在宿主中注册广播
+        return super.registerReceiver(new ProxyReceiver(mPluginReceiverName), filter);
+    }
+
+    @Override
+    public void sendBroadcast(Intent intent) {
+        //发送
+        super.sendBroadcast(intent);
     }
 }

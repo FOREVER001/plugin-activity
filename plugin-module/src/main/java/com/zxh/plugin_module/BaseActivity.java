@@ -2,9 +2,11 @@ package com.zxh.plugin_module;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
@@ -61,5 +63,15 @@ public class BaseActivity extends Activity implements ActivityInterface {
         Intent newIntent=new Intent();
         newIntent.putExtra("className",service.getComponent().getClassName());
         return mActivity.startService(newIntent);
+    }
+
+    @Override
+    public Intent registerReceiver(BroadcastReceiver receiver, IntentFilter filter) {
+        return mActivity.registerReceiver(receiver, filter);
+    }
+
+    @Override
+    public void sendBroadcast(Intent intent) {
+        mActivity.sendBroadcast(intent);
     }
 }
